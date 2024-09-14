@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Checker</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="search-container">
+        <form id="caloryForm" method="POST" action="/nutrition">
+            <input type="text" id="searchcal" name="foodItem" placeholder="Enter food item">
+            <button type="submit" id="searchcalbtn">Check Calories</button>
+        </form>
+    </div>
+
+    <div id="nutritionModal">
+        <% if (nutritionData) { %>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="results-container">
+                <div class="result-item"><span class="label">Name: </span><span><%= nutritionData.name %></span></div>
+                <div class="result-item"><span class="label">Calories: </span><span><%= nutritionData.calories %></span></div>
+                <div class="result-item"><span class="label">Carbohydrates: </span><span><%= nutritionData.carbohydrates_total_g %></span></div>
+                <div class="result-item"><span class="label">Cholesterol: </span><span><%= nutritionData.cholesterol_mg %></span></div>
+                <div class="result-item"><span class="label">Saturated Fat: </span><span><%= nutritionData.fat_saturated_g %></span></div>
+                <div class="result-item"><span class="label">Total Fat: </span><span><%= nutritionData.fat_total_g %></span></div>
+                <div class="result-item"><span class="label">Fiber: </span><span><%= nutritionData.fiber_g %></span></div>
+                <div class="result-item"><span class="label">Potassium: </span><span><%= nutritionData.potassium_mg %></span></div>
+                <div class="result-item"><span class="label">Protein: </span><span><%= nutritionData.protein_g %></span></div>
+                <div class="result-item"><span class="label">Sodium: </span><span><%= nutritionData.sodium_mg %></span></div>
+                <div class="result-item"><span class="label">Sugar: </span><span><%= nutritionData.sugar_g %></span></div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS -->
+    <style>
+        /* Add your inline CSS here if needed */
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .nutrition-details {
+            margin-top: 20px;
+        }
+        .nutrition-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= user.username %>!</h1>
+        <a href="/logout">Logout</a>
+    </header>
+    
+    <main>
+        <form action="/nutrition" method="POST">
+            <input type="text" name="foodItem" placeholder="Enter food item" required>
+            <button type="submit">Check Nutrition</button>
+        </form>
+
+        <% if (nutritionData) { %>
+            <div class="nutrition-details">
+                <h2>Nutrition Details for <%= nutritionData.name %></h2>
+                <p><strong>Calories:</strong> <%= nutritionData.calories %> kcal</p>
+                <p><strong>Serving Size:</strong> <%= nutritionData.serving_size_g %> g</p>
+                <p><strong>Total Fat:</strong> <%= nutritionData.fat_total_g %> g</p>
+                <p><strong>Saturated Fat:</strong> <%= nutritionData.fat_saturated_g %> g</p>
+                <p><strong>Protein:</strong> <%= nutritionData.protein_g %> g</p>
+                <p><strong>Sodium:</strong> <%= nutritionData.sodium_mg %> mg</p>
+                <p><strong>Potassium:</strong> <%= nutritionData.potassium_mg %> mg</p>
+                <p><strong>Cholesterol:</strong> <%= nutritionData.cholesterol_mg %> mg</p>
+                <p><strong>Carbohydrates:</strong> <%= nutritionData.carbohydrates_total_g %> g</p>
+                <p><strong>Fiber:</strong> <%= nutritionData.fiber_g %> g</p>
+                <p><strong>Sugar:</strong> <%= nutritionData.sugar_g %> g</p>
+            </div>
+        <% } else if (error) { %>
+            <p class="error"><%=error %></p>
+        <% } %>
+    </main>
+</body>
+</html>
